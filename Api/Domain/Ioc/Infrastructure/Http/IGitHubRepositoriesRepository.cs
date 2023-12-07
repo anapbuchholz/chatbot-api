@@ -6,6 +6,6 @@ namespace Domain.Ioc.Infrastructure.Http
 {
     public interface IGitHubRepositoriesRepository
     {
-        Task<IEnumerable<GitHubRepositoryModel>> GetFiveOldestRepositories();
+        Task<IEnumerable<GitHubRepositoryModel>> GetAll();
     }
 }

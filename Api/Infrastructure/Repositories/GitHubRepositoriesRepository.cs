@@ -13,19 +13,36 @@ namespace Infrastructure.Repositories
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<GitHubRepositoryModel>> GetFiveOldestRepositories()
+        public async Task<IEnumerable<GitHubRepositoryModel>> GetAll()
         {
-            var result = await _httpClient.GetAsync("/orgs/takenet/repos");
+            var repositoriesPerPage = 30;
+            var allRepositories = new List<GitHubRepositoryModel>();
 
-            if (!result.IsSuccessStatusCode)
+            bool morePageExists = true;
+            int paginaAtual = 1;
+
+            while (morePageExists)
             {
-                throw new Exception();
+                var result = await _httpClient.GetAsync($"/orgs/takenet/repos?per_page={repositoriesPerPage}&page={paginaAtual}");
+
+                if (result.IsSuccessStatusCode)
+                {
+                    string jsonResponse = await result.Content.ReadAsStringAsync();
+                    var repositories = JsonSerializer.Deserialize<List<GitHubRepositoryModel>>(jsonResponse);
+
+                    if (repositories == null || repositories.Count == 0)
+                    {
+                        morePageExists = false;
+                    }
+                    else
+                    {
+                        allRepositories.AddRange(repositories);
+                        paginaAtual++;
+                    }
+                }
             }
 
-            string jsonResponse = await result.Content.ReadAsStringAsync();
-            var repositories = JsonSerializer.Deserialize<List<GitHubRepositoryModel>>(jsonResponse);
-
-            return repositories;
+            return allRepositories;
         }
     }
 }

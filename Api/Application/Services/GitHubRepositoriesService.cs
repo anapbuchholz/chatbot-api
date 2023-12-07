@@ -15,11 +15,11 @@ namespace Application.Services
 
         public async Task<IEnumerable<GitHubRepositoryModel>> GetOldestGitHubRepositories()
         {
-            var oldestRepositories =  await _gitHubRepositoriesRepository.GetFiveOldestRepositories();
+            var repositories =  await _gitHubRepositoriesRepository.GetAll();
 
-            var orderedEvents = oldestRepositories.OrderBy(x => x.CreatedAt).ToList().Take(5);
+            var oldestRepositories = repositories.OrderBy(x => x.CreatedAt).ToList().Take(5);
 
-            return orderedEvents;
+            return oldestRepositories;
         }
     }
 }
