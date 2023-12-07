@@ -1,4 +1,7 @@
-﻿namespace Domain.Models
+﻿using System;
+using System.Text.Json.Serialization;
+
+namespace Domain.Models
 {
     public sealed class GitHubRepositoryModel
     {
@@ -8,7 +11,13 @@
             Description = description;
         }
 
+        [JsonPropertyName("name")]
         public string Name { get; set; }
+
+        [JsonPropertyName("description")]
         public string Description { get; set; }
+
+        [JsonPropertyName("created_at")]
+        public DateTime CreatedAt { get; set; }
     }
 }
