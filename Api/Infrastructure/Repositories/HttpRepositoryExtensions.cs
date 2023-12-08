@@ -8,6 +8,7 @@ namespace Infrastructure.Repositories
     {
         public static IServiceCollection AddHttpRepositories(this IServiceCollection serviceCollection)
         {
+            var GitHubToken = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
             serviceCollection.AddScoped<IGitHubRepositoriesRepository, GitHubRepositoriesRepository>();
             serviceCollection.AddHttpClient<IGitHubRepositoriesRepository, GitHubRepositoriesRepository>(client =>
             {
@@ -15,7 +16,7 @@ namespace Infrastructure.Repositories
                 client.BaseAddress = new Uri("https://api.github.com");
                 client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("AppName", "1.0"));
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "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");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GitHubToken);
             });
 
             return serviceCollection;
