@@ -4,10 +4,10 @@ using Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 var portVar = Environment.GetEnvironmentVariable("PORT");
-if (portVar is { Length: > 0 } /*&& int.TryParse(portVar, out int port)*/)
+if (portVar is { Length: > 0 } && int.TryParse(portVar, out int port))
 {
-    //builder.WebHost.ConfigureKestrel(options => { options.ListenAnyIP(port); });
-    builder.WebHost.UseUrls($"http://0.0.0.0:{portVar}");
+    builder.WebHost.ConfigureKestrel(options => { options.ListenAnyIP(port); });
+    builder.WebHost.UseUrls($"http://0.0.0.0:{Environment.GetEnvironmentVariable("PORT")}");
 }
 
 // Add services to the container.
