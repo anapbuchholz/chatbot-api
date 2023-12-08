@@ -1,5 +1,7 @@
-﻿using Domain.Ioc.Infrastructure.Http;
+﻿using Domain.CustomExceptions;
+using Domain.Ioc.Infrastructure.Http;
 using Domain.Models;
+using System.Net;
 using System.Text.Json;
 
 namespace Infrastructure.Repositories
@@ -16,9 +18,8 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<GitHubRepositoryModel>> GetAll()
         {
             var repositoriesPerPage = 30;
-            var allRepositories = new List<GitHubRepositoryModel>();
-
             var currentPage = 1;
+            var allRepositories = new List<GitHubRepositoryModel>();
 
             while (true)
             {
@@ -26,7 +27,7 @@ namespace Infrastructure.Repositories
 
                 if (!result.IsSuccessStatusCode)
                 {
-                    throw new Exception("Communication with GitHub API failed");
+                    InfrastructureFailuresValidator.Validate(result.StatusCode, "GitHubApi");
                 }
 
                 string jsonResponse = await result.Content.ReadAsStringAsync();

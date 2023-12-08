@@ -1,6 +1,8 @@
-﻿using Domain.Ioc.Application.Services;
+﻿using Domain.CustomExceptions;
+using Domain.Ioc.Application.Services;
 using Domain.Ioc.Infrastructure.Http;
 using Domain.Models;
+using System.Net;
 
 namespace Application.Services
 {
@@ -13,13 +15,25 @@ namespace Application.Services
             _gitHubRepositoriesRepository = gitHubRepositoriesRepository;
         }
 
-        public async Task<IEnumerable<GitHubRepositoryModel>> GetOldestGitHubRepositories()
+        public async Task<(IEnumerable<GitHubRepositoryModel>? body, HttpStatusCode status, string errorMessage)> GetOldestGitHubRepositories()
         {
-            var repositories =  await _gitHubRepositoriesRepository.GetAll();
+            try
+            {
+                var repositories = await _gitHubRepositoriesRepository.GetAll();
 
-            var oldestRepositories = repositories.OrderBy(x => x.CreatedAt).ToList().Take(5);
+                var oldestRepositories = repositories.OrderBy(x => x.CreatedAt).ToList().Take(5);
 
-            return oldestRepositories;
+                return (oldestRepositories, HttpStatusCode.OK, string.Empty);
+            }
+            catch (CustomExceptionBase ex)
+            {
+                return (default, ex.Status, ex.Message);
+            }
+            catch 
+            {
+                return (default, HttpStatusCode.InternalServerError, "Internal Error");
+            }
+            
         }
     }
 }

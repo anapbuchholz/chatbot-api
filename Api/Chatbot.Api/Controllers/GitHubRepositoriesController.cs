@@ -5,7 +5,7 @@ namespace Chatbot.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class GitHubRepositoriesController : ControllerBase
+    public class GitHubRepositoriesController : BaseController
     {
         private readonly IGitHubRepositoriesService _gitHubRepositoriesService;
 
@@ -19,7 +19,7 @@ namespace Chatbot.Api.Controllers
         {
            var result = await _gitHubRepositoriesService.GetOldestGitHubRepositories();
 
-            return Ok(result);
+            return GetHttpResponse(result.status, result.body, result.errorMessage);
         }
     }
 }
