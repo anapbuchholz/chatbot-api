@@ -15,7 +15,7 @@ namespace Infrastructure.Repositories
                 client.BaseAddress = new Uri("https://api.github.com");
                 client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("AppName", "1.0"));
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "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");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "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");
             });
 
             return serviceCollection;
