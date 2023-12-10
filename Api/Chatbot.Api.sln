@@ -5,11 +5,13 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.Api", "Chatbot.Api\Chatbot.Api.csproj", "{517002C4-9B64-4D73-9FD4-4CA4BAE02424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{3DECFD00-092C-40D2-B9EC-5A57240592AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{3DECFD00-092C-40D2-B9EC-5A57240592AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{C824D9F6-53CC-4654-ADC1-69E357572312}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{C824D9F6-53CC-4654-ADC1-69E357572312}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{B5F3B942-4A5C-40F4-AE3E-22158A8FCFE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{B5F3B942-4A5C-40F4-AE3E-22158A8FCFE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Api.Tests", "Chatbot.Api.Tests\Chatbot.Api.Tests.csproj", "{B8FA50DE-F6C6-40AE-A490-27313B4F42DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B5F3B942-4A5C-40F4-AE3E-22158A8FCFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5F3B942-4A5C-40F4-AE3E-22158A8FCFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5F3B942-4A5C-40F4-AE3E-22158A8FCFE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8FA50DE-F6C6-40AE-A490-27313B4F42DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8FA50DE-F6C6-40AE-A490-27313B4F42DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8FA50DE-F6C6-40AE-A490-27313B4F42DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8FA50DE-F6C6-40AE-A490-27313B4F42DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
